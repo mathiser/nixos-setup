@@ -84,10 +84,7 @@ in
     wget
     firefox
     pkgs.gnome3.gnome-tweaks
-    python39
-    python39Packages.pip
-    python39Packages.virtualenv
-    python39Packages.distro
+    conda
     libreoffice
     mendeley
     evolution
@@ -96,12 +93,23 @@ in
     nvidia-docker
     jetbrains.pycharm-professional
     kitty
-    steam
     gnome.networkmanager-openconnect  
     git
     pciutils
     nvidia-offload
+    signal-desktop
+    gnome.gedit
+    unzip
+    zip
+   gzip
   ];
+  
+   virtualisation.virtualbox.host.enable = true;
+   users.extraGroups.vboxusers.members = [ "mathis" ];
+    virtualisation.virtualbox.host.enableExtensionPack = true;
+  
+  # Enable steam
+   programs.steam.enable = true;
   
   # NVIDIA drivers are unfree.
   hardware.nvidia.modesetting.enable = true;
@@ -109,14 +117,14 @@ in
   hardware.nvidia.prime = {
     offload.enable = true;
 
-    # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
+    # Bus ID of the Intel GPU. You can find it using lspci, eisther under 3D or VGA
     intelBusId = "PCI:0:2:0";
 
     # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
     nvidiaBusId = "PCI:1:0:0";
   };
   
-# Some programs need SUID wrappers, can be configured further or are
+# Some pr ograms need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
