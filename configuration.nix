@@ -97,10 +97,6 @@
       vscode
       gimp
       citrix_workspace
-      libreoffice-qt6-fresh
-      hunspell
-      hunspellDicts.da_DK
-      hunspellDicts.en_US
     ]; 
   };
 
@@ -146,6 +142,7 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   # kernel
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
 
@@ -160,4 +157,6 @@
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
 
+  # Experimental features
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
